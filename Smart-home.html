@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Home UI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+body{display:flex;background:#eef2f7;height:100vh;}
+
+/* Sidebar */
+.sidebar{
+    width:220px;
+    background:#1e293b;
+    color:white;
+    padding:20px;
+}
+.sidebar h2{margin-bottom:20px;}
+.sidebar a{
+    display:block;
+    padding:10px;
+    margin:8px 0;
+    border-radius:6px;
+    text-decoration:none;
+    color:#cbd5e1;
+}
+.sidebar a:hover{background:#334155;color:white;}
+
+/* Main */
+.main{flex:1;display:flex;flex-direction:column;}
+
+/* Header */
+.header{
+    background:white;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Dashboard */
+.content{
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    text-align:center;
+}
+
+.card:hover{transform:scale(1.03);transition:0.3s;}
+
+/* Toggle */
+.switch{
+    position:relative;
+    display:inline-block;
+    width:50px;height:24px;
+}
+.switch input{display:none;}
+.slider{
+    position:absolute;
+    background:#ccc;
+    border-radius:20px;
+    top:0;left:0;right:0;bottom:0;
+}
+.slider:before{
+    content:"";
+    position:absolute;
+    width:18px;height:18px;
+    left:3px;bottom:3px;
+    background:white;
+    border-radius:50%;
+}
+input:checked + .slider{background:#22c55e;}
+input:checked + .slider:before{transform:translateX(26px);}
+
+/* Status Box */
+.status{
+    margin-top:10px;
+    font-size:14px;
+    color:gray;
+}
+
+/* Chart */
+.chart{
+    height:120px;
+    border-radius:10px;
+    background:linear-gradient(120deg,#60a5fa,#34d399);
+}
+
+/* Footer */
+.footer{
+    text-align:center;
+    padding:10px;
+    background:white;
+    font-size:12px;
+}
+
+@media(max-width:768px){
+    .sidebar{display:none;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>🏠 Smart Home</h2>
+<a href="#">Dashboard</a>
+<a href="#">Devices</a>
+<a href="#">Energy</a>
+<a href="#">Security</a>
+<a href="#">Settings</a>
+</div>
+
+<div class="main">
+
+<div class="header">
+<h3>Dashboard</h3>
+<button onclick="alert('Profile Clicked')">User</button>
+</div>
+
+<div class="content">
+
+<div class="card">
+<h4>💡 Lights</h4>
+<label class="switch">
+<input type="checkbox" onchange="update(this,'Lights')">
+<span class="slider"></span>
+</label>
+<div class="status">OFF</div>
+</div>
+
+<div class="card">
+<h4>🌀 Fan</h4>
+<label class="switch">
+<input type="checkbox" onchange="update(this,'Fan')">
+<span class="slider"></span>
+</label>
+<div class="status">OFF</div>
+</div>
+
+<div class="card">
+<h4>❄ AC</h4>
+<label class="switch">
+<input type="checkbox" onchange="update(this,'AC')">
+<span class="slider"></span>
+</label>
+<div class="status">OFF</div>
+</div>
+
+<div class="card">
+<h4>🔒 Security</h4>
+<label class="switch">
+<input type="checkbox" onchange="update(this,'Security')">
+<span class="slider"></span>
+</label>
+<div class="status">OFF</div>
+</div>
+
+<div class="card">
+<h4>📊 Energy</h4>
+<div class="chart"></div>
+</div>
+
+<div class="card">
+<h4>🌡 Temperature</h4>
+<p>24°C</p>
+</div>
+
+</div>
+
+<div class="footer">
+Smart Home UI • Frontend Only
+</div>
+
+</div>
+
+<script>
+function update(el,name){
+    let status = el.checked ? 'ON' : 'OFF';
+    el.parentElement.nextElementSibling.innerText = status;
+}
+</script>
+
+</body>
+</html>
